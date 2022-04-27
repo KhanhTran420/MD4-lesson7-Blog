@@ -1,11 +1,8 @@
 package com.codegym.configuration;
 
-//import com.codegym.repository.CustomerRepository;
-//import com.codegym.repository.ICustomerRepository;
-//import com.codegym.service.CustomerService;
-//import com.codegym.service.ICustomerService;
+
 import com.codegym.formatter.CategoryFormatter;
-import com.codegym.repository.IBlogRepository;
+
 import com.codegym.service.blog.BlogService;
 import com.codegym.service.blog.IBlogService;
 import com.codegym.service.category.CategoryService;

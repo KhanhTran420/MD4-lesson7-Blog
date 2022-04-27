@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+<h1>Home</h1>
+<form>
+    Tìm kiếm Blog:
+    <input name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+
+<a href="/create-blog">Thêm mới Blog  </a>
+<br>
+<br>
+<table id="book">
+    <tr>
+        <th>Tên Blog </th>
+        <th>Tác giả</th>
+        <th>Thể loại</th>
+        <th>Hình ảnh</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="blog : ${blogs}">
+        <tr>
+            <td th:text="${blog.name}"></td>
+
+            <td th:text="${blog.author}"></td>
+            <td th:if="${blog.category}" th:text="${blog.category.name}"></td>
+            <td th:unless="${blog.category}"></td>
+            <td><img th:src="@{'/image/' + ${blog.image}}" width="100" height="100"></td>
+            <td><a th:href="@{/edit-book/__${blog.id}__ }">Chỉnh sửa</a></td>
+            <td><a th:href="@{/delete-book/__${blog.id}__ }">Xóa</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:if="${blogs.hasPrevious()}" th:href="@{'/books'(page=${blogs.number - 1})}">previous</a>
+    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+    <a th:if="${blogs.hasNext()}" th:href="@{'/books'(page=${blogs.number + 1})}">next</a>
+
+</div>
+<br>
+<a href="/category">Danh sách thể loại </a>
+<footer th:replace="/layout :: footer"></footer>
+
+</body>
+</html>
